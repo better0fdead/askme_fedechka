@@ -1,0 +1,30 @@
+{% load static %}
+
+<div class="row question">
+                <div class="col-2">
+                    <img class = "avatar" src = "{{ question.avatar }}" alt = "">
+                    <div>
+                        <button type="button" class="btn btn-outline-danger">&#128077</button>
+                        {% if question.likes|add:"0" >= 0 %}
+                            <span class="rating" style="color: green">+{{ question.likes }}</span>
+                        {% else %}
+                            <span class="rating" style="color: red">{{ question.likes }}</span>
+                        {% endif %}
+                        <button type="button" class="btn btn-outline-danger">&#128078</button>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="row-content">
+                            <h3> <a href={% url "question" %} class="question-title"> {{ question.title }} </a> </h3>
+                            <div class="text">{{question.text}} </div>
+                            <div class="under underquestion">
+                                <a href="questions.html" class="answers">Answers (3)</a> 
+                                <span class="tags" style="margin-left: 10px;">Tags:
+                                  Dota2
+                                </span>
+                                <a class="settings" href="help.html">Help</a>
+                            </div>
+                            
+                    </div>
+                </div>
+            </div>

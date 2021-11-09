@@ -1,0 +1,23 @@
+{% extends 'incl/base.html' %}
+{% load static %}
+{% block content %}
+        <div class="col-9">
+            <h3> Sign in </h3>
+            <div class = "form-floating">
+            <input type = "username" class = "form-control" id = "floating-input" placeholder = "mode:awf 2002" style="max-width: 600px;">
+            <label for = "floating-input"> usename </label>
+            </div>
+            <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="max-width: 600px;">
+            <label for="floatingPassword">password</label>
+            </div>
+
+            <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" style="max-width: 600px;">Sign in</button>
+            <a class="w-100 btn btn-lg btn-primary" style="max-width: 300px;" href = "{% url "register" %}" role = "button">Create new account</a>
+        </div>
+{% endblock content %}

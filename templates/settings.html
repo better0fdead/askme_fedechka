@@ -1,0 +1,27 @@
+{% extends 'incl/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-9">
+        <h2> Settings: username </h2>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">title:</label>
+            <textarea type="text" class="form-control" id="formGroupExampleInput2" rows="8"
+                placeholder="" style="height: 39px;width: 95%;"></textarea>
+        </div>
+       <div class = "row"> </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2"> text:</label>
+            <textarea type="text" class="form-control" id="formGroupExampleInput2" rows="8"
+                placeholder="" style = "width: 95%;"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">tags:</label>
+            <textarea type="text" class="form-control" id="formGroupExampleInput2" rows="8"
+                placeholder="" style="height: 39px;width: 95%;"></textarea>
+        </div>
+        <div class="answer_btn">
+            <button class="btn btn-success ask_btn" type="submit">ASK!</button> 
+        </div>
+        
+</div>
+{% endblock content %}

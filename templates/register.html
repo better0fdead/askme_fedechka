@@ -1,0 +1,46 @@
+{% extends 'incl/base.html' %}
+{% load static %}
+{% block content %}
+        <div class="col-9">
+    <main class="form-signin">
+        <form enctype="multipart/form-data">
+            <h3>Registration</h3>
+
+            <div class="form-floating">
+                <input type="Login" class="form-control" id="floatingInput" placeholder="Egor_Nagibator" style="max-width: 600px;">
+                <label for="floatingInput">Login</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="Email" class="form-control" id="floatingInput" placeholder="mail@example.com" style="max-width: 600px;">
+                <label for="floatingInput">Email</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="Nickname" class="form-control" id="floatingInput" placeholder="better0fdead" style="max-width: 600px;">
+                <label for="floatingInput">Nickname</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="max-width: 600px;">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="max-width: 600px;">
+                <label for="floatingPassword">Repeat password</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password "style="max-width: 600px;">
+                <label for="floatingPassword">Repeat password</label>
+            </div>
+            Upload avatar
+            <input style="margin: 10px" type="file">
+            <div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" href="../" style="max-width: 600px;">Register!</button>
+            </div>
+        </form>
+    </main>
+        </div>
+{% endblock content %}

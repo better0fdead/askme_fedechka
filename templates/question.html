@@ -1,0 +1,20 @@
+{% extends 'incl/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-9">
+       {% include  "incl/single_question.html" %}
+       <div class = "row"> </div>
+        {% include "incl/single_answer.html" %}
+        <div class="form-group">
+            <label for="formGroupExampleInput2">текст ответа:</label>
+            <textarea type="text" class="form-control" id="formGroupExampleInput2" rows="8"
+                placeholder="попытайтесь подробно ответить на вопрос.."></textarea>
+        </div>
+        <div class="answer_btn">
+            <button class="btn btn-success ask_btn" type="submit">ОТВЕТИТЬ</button> <span class="alert alert-danger" role="alert">
+                вы забыли ввести ответ
+            </span>
+        </div>
+        
+</div>
+{% endblock content %}
