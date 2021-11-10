@@ -24,6 +24,7 @@ urlpatterns = [
     path('register/', views.register, name = "register"),
     path('hot/', views.hot, name = "hot"),
     path('tag/', views.tag, name = "tag"),
-    path('question/', views.question, name = "question"),
-    path('create/', views.create, name = "create")
+    path('question/<int:qid>/', views.question, name = "question"),
+    path('create/', views.create, name = "create"),
+    path('tag/<str:tid>/', views.tag_page, name='tag'),
 ]

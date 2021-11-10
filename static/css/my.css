@@ -31,3 +31,8 @@ main > .container {
         position: relative;
         bottom: -50px;
 }
+.pop-tag {
+    color: red;
+    font-size: 150%;
+    text-decoration: none;
+}

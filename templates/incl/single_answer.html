@@ -1,20 +1,23 @@
 {% load static %}
 <div class="row question" style="max-width: ;max-height: 200px;max-width: 1200px;left: 100px;position: relative;">
                 <div class="col-2">
-                    <img class = "avatar" src = "{{ question.avatar }}" alt = "">
+                    <img class = "avatar" src = "{% static "img/fly.jpg" %}" alt = "">
                     <div>
                         <button type="button" class="btn btn-outline-danger">&#128077</button>
-                        {% if question.likes|add:"0" >= 0 %}
-                            <span class="rating" style="color: green">+{{ question.likes }}</span>
-                        {% else %}
-                            <span class="rating" style="color: red">{{ question.likes }}</span>
+                        {% if comment.votes.likes.count > 0 %}
+                            <span class="rating" style="color: green">+{{ comment.votes.likes.count }}</span>
+                        {% elif comment.votes.likes.count < 0 %}
+                            <span class="rating" style="color: red">-{{ comment.votes.likes.count }}</span>
+                        {% elif comment.votes.likes.count == 0 %}
+                            <span class="rating" style="">{{ comment.votes.likes.count }}</span>
                         {% endif %}
                         <button type="button" class="btn btn-outline-danger">&#128078</button>
                     </div>
                 </div>
                 <div class="col-10">
                     <div class="row-content">
-                            <div class="text">{{question.text}} </div>
+                            <h4>{{ comment.comment_author }}</h4>
+                            <div class="text">{{ comment.comment_text }} </div>
                     </div>
                 </div>
             </div>

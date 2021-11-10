@@ -4,7 +4,9 @@
 <div class="col-9">
        {% include  "incl/single_question.html" %}
        <div class = "row"> </div>
-        {% include "incl/single_answer.html" %}
+       {% for comment in comments %}
+            {% include "incl/single_answer.html" %}
+        {% endfor %}
         <div class="form-group">
             <label for="formGroupExampleInput2">текст ответа:</label>
             <textarea type="text" class="form-control" id="formGroupExampleInput2" rows="8"

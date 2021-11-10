@@ -84,14 +84,16 @@
             <div class="rows-5" style="min-height: 300px;"><h3> Tags:
                 <div>
                         {% for tag in global_info.tags %}
-                            <li><a href="" class="">{{ tag }}</a></li>
+                            <li><a href="{% url 'tag' tid=tag.tag_title %}" class="">{{ tag }}</a></li>
                         {% endfor %}
                 </div>
             </h3>
             </div>
             <div class="rows-5"><h3> Users:
               <div>
-              <a class="settings" href="user_1001.html">Maksim Vylegzhanin</a>
+                    {% for user in global_info.best_users %}
+                        <li><a href="" class="">{{ user.user }}</a></li>
+                    {% endfor %}
               </div>
             </h3>
             </div>

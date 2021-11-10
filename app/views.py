@@ -1,15 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import Paginator
+from django.core.paginator import PageNotAnInteger, EmptyPage
+
+
+from .models import *
 # Create your views here.
 
-
+context = {
+    'best_users': Profile.objects.all(),
+    'hot_tags': Tag.objects.all(),
+}
 
 global_info = {
-    "tags": [
-        f"tag{j}"
-        for j in range(10)
-        ]
+    'tags': Tag.objects.all()[:10],
+    'best_users': Profile.objects.all()[:10],
 }
 
 questions = [
@@ -25,6 +30,19 @@ questions = [
     } for i in range(30)
 ]
 
+def paginate(objects_list, request, per_page=5):
+    cl = list(objects_list)
+    paginator = Paginator(cl, per_page)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
+    print("hello drujok-pirojok")
+    return page_obj
+
 answers = [
     {
         "number": {i},
@@ -36,10 +54,10 @@ answers = [
     } for i in range(1, 7)
 ]
 def index(request):
-    paginator = Paginator(questions, 5)
-    page = request.GET.get('page')
-    content = paginator.get_page(page)
-    return render(request, "index.html", {'questions': content, 'global_info' : global_info})
+    tag_list = Tag.objects.all()[:10]
+    latest_question_list = Question.objects.get_new()
+    page_obj = paginate(latest_question_list, request, 5)
+    return render(request, "index.html", {'questions': page_obj, 'global_info' : global_info})
 
 def login(request):
     return render(request, "login.html", {'global_info' : global_info})
@@ -48,10 +66,10 @@ def register(request):
     return render(request, "register.html", {'global_info' : global_info})
 
 def hot(request):
-    paginator = Paginator(questions, 5)
-    page = request.GET.get('page')
-    content = paginator.get_page(page)
-    return render(request, "hot.html", {'questions': content, 'global_info' : global_info})
+    tag_list = Tag.objects.all()[:10]
+    hottest_question_list = Question.objects.hot()
+    page_obj = paginate(hottest_question_list, request, 5)
+    return render(request, "hot.html", {'questions': page_obj, 'global_info' : global_info})
 
 def tag(request):
     paginator = Paginator(questions, 5)
@@ -59,9 +77,21 @@ def tag(request):
     content = paginator.get_page(page)
     return render(request, "tag.html", {'questions': content, 'global_info' : global_info})
 
-def question(request):
-    i = 1
-    return render(request, "question.html", {'question': questions[i], 'global_info' : global_info})
+def question(request, qid):
+    tag_list_all = Tag.objects.all()[:10]
+    question = Question.objects.get(pk=qid)
+    comments_list = list(question.comment_set.all())
+    page_obj = paginate(comments_list, request, 5)
+    tag_list = question.tags.all()[:5]
+    
+    return render(request, "question.html", {'question': question, 'comments': page_obj, 'tags': tag_list_all, 'question_tags': tag_list, 'global_info' : global_info})
 
 def create(request):
     return render(request, "new_question.html", {'global_info' : global_info})
+
+def tag_page(request, tid):
+    tag_list = Tag.objects.all()[:10]
+    tag = Tag.objects.get(tag_title=tid)
+    latest_question_list = tag.question_set.all()
+    page_obj = paginate(latest_question_list, request)
+    return render(request, 'tag.html', {'tag': tid, 'questions': page_obj, 'tags': tag_list, 'global_info':global_info})
